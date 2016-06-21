@@ -91,6 +91,6 @@ loop do
   end
   prompt("Would you like to perform another operation? ")
   answer = Kernel.gets().chomp()
-  break unless answer.downcase() == 'yes'
+  break unless answer.casecmp('yes') == 0
 end
 prompt("Good bye...")
