@@ -1,1 +1,1 @@
-  Wrong number of arrguments are being passed to the method calculate_product
+Wrong number of arrguments are being passed to the method calculate_product
