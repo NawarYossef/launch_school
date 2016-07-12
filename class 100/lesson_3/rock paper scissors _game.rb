@@ -1,47 +1,108 @@
-  ARR_CHOICES = ['rock', 'paper', 'scissors']
-  COMPUTER_CHOICES = ARR_CHOICES.sample
-  user_choices = ''
-  def prompt(message)
-    Kernel.puts("=> #{message}")
-  end
-  def valid_choice?(user_choices)
-    ARR_CHOICES.include?(user_choices) == true
-  end
-  def result_draw
-    prompt("Oops! it's a draw.")
-  end
-  def reslut_user_win(user_choices)
-    if user_choices == "rock" && COMPUTER_CHOICES == "scissors"
-      return true
-    elsif user_choices == "paper" && COMPUTER_CHOICES == "rock"
-      return true
-    elsif user_choices == "scissors" && COMPUTER_CHOICES == "paper"
-      return true
-    end
-  end
-  prompt("Hello! Let's play a game of rock paper scissors!")
-  prompt("make a choice")
+WINNING_COMBINATION = { "rock" => %w(lizard scissors),
+                        "paper" => %W(rock spock),
+                        "scissors" => %w(paper lizard),
+                        "lizard" => %w(spock paper),
+                        "spock" => %w(scissors rock)
+
+}.freeze
+
+Computer_choices =
+  %w(rock paper scissors lizard spock).sample
+
+Convert_choices = {
+  'r' => 'rock',
+  'p' => 'paper',
+  's' => 'scissors',
+  'l' => 'lizard',
+  'sp' => 'spock'
+}.freeze
+
+Result_display = {
+  %w(rock lizard) => "rock beats lizard",
+  %w(rock scissors) => "rock beats scissors",
+  %w(paper rock) => "paper beats rock",
+  %w(paper spock) => "paper beats spock",
+  %w(scissors lizard) => "scissors beats lizard",
+  %w(scissors paper) => "scissors beats paper",
+  %w(paper lizard) => "lizard beats paper",
+  %w(lizard spock) => "lizard beats spock",
+  %w(spock scissors) => "spock beats scissors",
+  %w(spock rock) => "spock beats rock"
+}
+
+
+
+
+def validate_choice(user_choice)
   loop do
-  user_choices = Kernel.gets.downcase().chomp()
-  loop do
-    if valid_choice?(user_choices)
+    if %w(r p s l sp).include?(user_choice)
       break
     else
-      prompt("Please eneter a valid answer") 
-      user_choices = Kernel.gets.downcase().chomp()
+    prompt("Please make a valid choice: (r, p, s, l, sp)")
+    user_choice = gets.chomp.downcase.to_s
     end
   end
-  prompt("#{COMPUTER_CHOICES}")
-  if user_choices == COMPUTER_CHOICES
-     result_draw
-  elsif reslut_user_win(user_choices)
-    prompt("Congratulations! You Win...")
-  else
-    prompt("I win!.Sorry:(")
-  end
-  prompt("Thank you for playing with me. Would you like to play again ?")
-  reply = Kernel.gets.downcase().chomp()
-  break unless reply.downcase == 'yes'
-  prompt("Please make a choice")
-  end
-  prompt("Thank you. Good bye...")
+end
+
+def prompt(message)
+  puts("#{message}")
+end
+
+def system_clear
+  system('clr') || system('clear')
+end
+
+def line_break
+  puts "--------------------------"
+end
+
+def player_winner?(player1,player2)
+   WINNING_COMBINATION[player1].include?(player2)
+end
+
+msg1 = <<-sm
+
+--------------------------------
+  ***************************
+        Welcome to
+rock paper scissors lizard spock
+          game
+  ***************************
+--------------------------------
+sm
+
+msg2 = <<-sm
+Please make a choice :
+r => rock
+p => paper
+s => scissors
+l => lizard
+sp => spock
+sm
+
+choice = ''
+user_score = 0
+pc_score = 0
+computer_choice = Computer_choices
+Both_choices = [Convert_choices[choice], computer_choice]
+
+prompt(msg1)
+loop do
+  prompt(msg2)
+  line_break
+  choice = gets.chomp.downcase.to_s
+  validate_choice(choice)
+  computer_choice
+  line_break
+  prompt("you chose:            #{Convert_choices[choice]}")
+  prompt("computer chose:       #{computer_choice}")
+  prompt("#{Result_display[Both_choices]}")
+   if player_winner?(Convert_choices[choice],computer_choice)
+     prompt("You win")
+   else
+     prompt("Computer wins")
+   end
+end
+
+
+
