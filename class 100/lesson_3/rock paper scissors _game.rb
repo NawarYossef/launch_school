@@ -60,7 +60,6 @@ rock paper scissors lizard spock
           game
   ***************************
 --------------------------------
-
 Here are The Rules of The Game:
 ^^ Scissors cuts Paper
 ^^ Paper covers Rock
@@ -72,6 +71,8 @@ Here are The Rules of The Game:
 ^^ Paper disproves Spock
 ^^ Spock vaporizes Rock
 ^^ Rock crushes Scissors
+
+First person to win 5 rounds, wins the game!!!
 sm
 
 msg2 = <<-sm
