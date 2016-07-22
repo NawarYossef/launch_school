@@ -1,9 +1,9 @@
 WIN_CHOICES = {
-  "rock" => %W(lizard scissors),
+  "rock" => %w(lizard scissors),
   "paper" => %w(rock, spock),
-  "scissors" => %W(lizard paper),
-  "lizard" => %W(paper spock),
-  "spock" => %W(scissors rock)
+  "scissors" => %w(lizard paper),
+  "lizard" => %w(paper spock),
+  "spock" => %w(scissors rock)
 }.freeze
 
 PLAYER_CONVERT_CHOICES = {
@@ -90,23 +90,20 @@ computer_score = 0
 round = 1
 
 loop do # main loop
-
   loop do # inner loop
-
     prompt("Round: #{round}")
     round += 1
     line_break
     prompt(msg2)
-
     player_choice = gets.downcase.chomp.to_s
-      loop do
-        if validate_choice(player_choice)
-      break
-        else
-      prompt("Invalid choice. Please make a choice (r,p,s,l,sp)")
-      player_choice = gets.chomp.downcase.to_s
-        end
+    loop do
+      if validate_choice(player_choice)
+        break
+      else
+        prompt("Invalid choice. Please make a choice (r,p,s,l,sp)")
+        player_choice = gets.chomp.downcase.to_s
       end
+    end
 
     computer_choice = COMPUTER_OPTIONS.sample
     prompt("=> #{computer_choice}")
@@ -116,10 +113,10 @@ loop do # main loop
     puts "computer chose #{computer_choice}"
     if player_wins(player_choice, computer_choice)
       puts "You win "
-    player_score += 1
+      player_score += 1
     elsif computer_wins(player_choice, computer_choice)
       puts "Computer wins"
-    computer_score += 1
+      computer_score += 1
     else
       puts "its a tie!"
     end
@@ -130,7 +127,6 @@ loop do # main loop
     prompt("Computer score: #{computer_score}")
 
     break if calc_score(player_score, computer_score)
-
   end
   system_clear
   prompt("Final Score")
@@ -144,17 +140,16 @@ loop do # main loop
   answer = gets.chomp
 
   loop do
-    break if answer.downcase == 'y' || answer.downcase == 'n'
+    break if answer.casecmp('y') == 0 || answer.casecmp('n') == 0
     prompt("Please enter a vaild answer (y/n)")
     answer = gets.chomp
   end
 
-  break unless answer.downcase == 'y'
+  break unless answer.casecmp('y') == 0
   player_score = 0
   computer_score = 0
   round = 1
   system_clear
-
 end
 
 system_clear
