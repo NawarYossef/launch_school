@@ -5,6 +5,14 @@
 #The results should be sorted by increasing value.
 
 #solution :
+#Short version :
+def multiply_all_pairs(arr1,arr2)
+  arr1.product(arr2).map {|value| value.reduce(:*)}.sort!
+end
+
+multiply_all_pairs([2, 4], [4, 3, 1, 2])
+
+#Long version :
 def multiply_all_pairs(arr1,arr2)
   new_array = []
    arr1.product(arr2).each do |v|
