@@ -12,7 +12,7 @@ end
 
 def display_board(brd)
   clear_system
-  puts "You're a #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
+  puts "You're a #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}"
   puts "--------------"
   puts "    |    |   "
   puts " #{brd[1]}  | #{brd[2]}  | #{brd[3]}   "
@@ -30,7 +30,7 @@ end
 
 def initialize_board
  new_board = {}
- (1..9).each {|num| new_board[num] = INITIAL_MARKER}
+ (1..9).each { |num| new_board[num] = INITIAL_MARKER }
  new_board
 end
 
@@ -51,7 +51,7 @@ def computer_places_piece!(brd)
 end
 
 def empty_squares(brd)
-  brd.keys.select {|num| brd[num] == INITIAL_MARKER}
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
 def board_full?(brd)
@@ -66,14 +66,15 @@ def detect_winner(brd)
   winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # lines
                   [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
                   [[1, 5, 9],  [3, 5, 7]]           #diagonals
+
   winning_lines.each do |line|
     if brd[line[0]] == PLAYER_MARKER &&
        brd[line[1]] == PLAYER_MARKER &&
        brd[line[2]] == PLAYER_MARKER
-       return "Player"
+    return "Player"
     elsif brd[line[0]] == COMPUTER_MARKER &&
-       brd[line[1]] == COMPUTER_MARKER &&
-       brd[line[2]] == COMPUTER_MARKER
+          brd[line[1]] == COMPUTER_MARKER &&
+          brd[line[2]] == COMPUTER_MARKER
     return "Computer"
     end
   end
