@@ -6,6 +6,7 @@
 # Solution : 
 def CoinDeterminer(num)
   coins = [1,5,7,9,11]
+  return num if num <= 4
   (1..coins.size - 1).each do |comb|
     coins.combination(comb).to_a.each do |collection|
       return collection.size if collection.reduce(&:+) == num
@@ -13,7 +14,7 @@ def CoinDeterminer(num)
   end
   
 end
-
-CoinDeterminer(6) 
+CoinDeterminer(2)
+CoinDeterminer(5) 
 CoinDeterminer(16) 
 CoinDeterminer(25) 
