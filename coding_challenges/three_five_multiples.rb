@@ -13,7 +13,7 @@ def ThreeFiveMultiples(num)
    total << three_mult if three_mult < num
    total << five_mult if five_mult < num
   end
-     num <= 5 ? p(0) :  p(total.reduce(&:+))
+     num <= 3 ? p(0) :  p(total.reduce(&:+))
 end
 
 ThreeFiveMultiples(6) == 8
