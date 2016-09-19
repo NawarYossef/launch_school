@@ -6,17 +6,12 @@
 
 # Solution : 
 def AdditivePersistence(num)
- additive = []
- total = 0
- numbers = num.to_s.split(//).map(&:to_i)
- numbers.each do |number|
-   additive << number
-   total += number
-   break if total >= 9
- end
- additive.size == 1 ? 0 : additive.size
+  num.to_s.split(//).map(&:to_i).combination(2).to_a.each do |comb|
+    return comb.size if comb.reduce(&:+)  > 0 && comb.reduce(&:+) <= 9
+  end
+  return 0
 end
 
 AdditivePersistence(4) == 0
-AdditivePersistence(19) == 2
-AdditivePersistence(2718) == 2
+AdditivePersistence(19) == 0
+AdditivePersistence(2718) == 2 
