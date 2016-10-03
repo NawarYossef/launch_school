@@ -5,7 +5,14 @@
 # that number along with a single character of the repeating sequence. For example: "wwwggopp" would return 3w2g1o2p. 
 # The string will not contain any numbers, punctuation, or symbols. 
 
-# Solution : 
+# Solution (1) :
+def RunLength(str)
+  cpy_str = str.chars.uniq.join
+  cpy_str.chars.map {|char|  str.scan(char).count.to_s + char}.join
+end
+
+
+# Solution (2): 
 def Runlength(string)
   output_string = ''
   letter_count = []
