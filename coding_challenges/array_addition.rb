@@ -7,7 +7,19 @@
 # because 4 + 6 + 10 + 3 = 23. The array will not be empty, will not contain all the same elements, 
 # and may contain negative numbers. 
 
-# Solution : 
+# Solution (1) :
+def ArrayAdditionI(arr)
+  largest, count = arr.sort[-1], 0
+  (2..arr.size).each do |idx|
+    arr.combination(idx).to_a.each do |comb|
+       count += 1 if comb.reduce(&:+) == largest
+    end
+  end
+  count > 0 ? puts("true") : puts("false")
+end
+
+
+# Solution (2) : 
 def ArrayAdditionI(arr)
   sum = []
   largest_num = arr.max
