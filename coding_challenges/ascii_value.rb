@@ -10,7 +10,12 @@
 # store the values into a new array
 # two ways to calculate the sum in the array: 1) the 'inject' method, 2) iteration and adding values to a new variable (total)
 
+# Solution (1) :
+def ascii_value(string)
+  string.emtpy? ? 0 : string.chars.map{|letter| letter.ord }.reduce(&:+)
+end
 
+# Solution (2) :
 def ascii_value(string)
    arr = []
    string.chars {|c| arr << c.ord}
