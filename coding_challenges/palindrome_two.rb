@@ -6,7 +6,7 @@
 
 # Solution :
 def PalindromeTwo(str)
-  backword_string = str.gsub(/[^a-zA-Z]/,"").downcase!.reverse!
+  backword_string = str.gsub(/[^a-zA-Z]/,"").downcase.reverse
   backword_string == str.gsub(/[^a-zA-Z]/,"").split(//).join.downcase ? puts("true") : puts("false")
 end
 
