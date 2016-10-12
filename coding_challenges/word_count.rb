@@ -5,10 +5,16 @@
 # Words will be separated by single spaces. 
 # Sample Test Cases
 
-# Solution :
+# Solution (1) :
+def WordCount(string)
+  string.scan(/\w+/).count
+end
+
+# Solution(2) :
 def WordCount(str)
   str.split.size
 end
+
 
 WordCount("Hello World") == 2
 WordCount("one 22 three") == 3

@@ -5,8 +5,12 @@
 # You may assume that every word contains at least one letter, and that the string will always contain at least one word. 
 # You may also assume that each string contains nothing but words and spaces
 
+# Solution (1) :
+def swap(string)
+ string.scan(/\w+/).each {|word| word[0],word[-1] = word[-1], word[0]}.join(' ')
+end
 
-# Solution :
+# Solution (2):
 def swap(string)
   new_string = string.split.each {|w| w.size <= 2 ? w.reverse! : (w[0],w[-1] = w[-1],w[0])}.join(' ')
   puts new_string
