@@ -7,7 +7,7 @@
 # If a superincreasing sequence isn't formed, 
 # then your program should return the string "false" 
 
-# Solution :
+# Solution (1):
 def Superincreasing(arr)
     sum = 0
     arr.each do |num|
@@ -15,6 +15,16 @@ def Superincreasing(arr)
       sum += num
     end
     return true
+end
+
+# Solution (2): 
+def Superincreasing(arr)
+  all_sums = []
+  (1..arr.size - 1).each do |idx|
+    before = idx - 1
+    return false if arr[0..before].reduce(&:+) >= arr[idx]
+  end
+  true
 end
 
 Superincreasing([1,2,3,4])   == "false"
